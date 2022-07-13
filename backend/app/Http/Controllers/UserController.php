@@ -14,7 +14,7 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => ['required', 'string', 'max:70'],
             'email' => ['required', 'email:rfc,dns', 'max:70', 'unique:users,email'],
-            'password' => ['required', 'min:8']
+            'password' => ['required', 'min:8', 'confirmed']
         ]);
 
         $request->merge(['password' => Hash::make($request->input('password'))]);

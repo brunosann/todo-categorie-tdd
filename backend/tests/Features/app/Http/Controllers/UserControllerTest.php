@@ -17,6 +17,7 @@ class UserControllerTest extends TestCase
       'name' => 'Jhon Doe',
       'email' => 'jhon_doe@gmail.com',
       'password' => '12345678',
+      'password_confirmation' => '12345678',
     ];
 
     // Act
@@ -50,6 +51,7 @@ class UserControllerTest extends TestCase
       'name' => 'Jhon Doe',
       'email' => $user->email,
       'password' => '12345678',
+      'password_confirmation' => '12345678',
     ];
 
     // Act
