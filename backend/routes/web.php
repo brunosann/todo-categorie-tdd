@@ -13,8 +13,6 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return config('app');
-});
-
 $router->post('/user/register', ['uses' => 'UserController@register', 'as' => 'register']);
+
+$router->post('/login', ['uses' => 'AuthController@login', 'as' => 'login']);
