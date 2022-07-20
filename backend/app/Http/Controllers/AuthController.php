@@ -18,6 +18,13 @@ class AuthController extends Controller
     return $this->respondWithToken($token);
   }
 
+  public function logout()
+  {
+    Auth::logout();
+
+    return response()->json(['message' => 'Desconectado com sucesso']);
+  }
+
   protected function respondWithToken($token)
   {
     return response()->json([
