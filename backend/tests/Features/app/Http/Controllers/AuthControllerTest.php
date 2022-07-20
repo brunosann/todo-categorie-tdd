@@ -57,4 +57,26 @@ class AuthControllerTest extends TestCase
     $response->assertResponseStatus(401);
     $response->seeJsonStructure(['error']);
   }
+
+  public function testUserCanLogout()
+  {
+    // prepare
+    /** 
+     * @var \Illuminate\Contracts\Auth\Authenticatable $user 
+     * */
+    $user = User::factory()->create();
+
+    // Act
+    $this->post(route('login'), ['email' => $user->email, 'password' => 'password']);
+    $token = json_decode($this->response->getContent())->access_token;
+
+    $response = $this->post(route('logout'), [], [
+      'Content-Type' => 'application/json',
+      'Authorization' => 'Bearer ' . $token
+    ]);
+
+    // assert
+    $response->assertResponseStatus(200);
+    $response->seeJsonStructure(['message']);
+  }
 }
